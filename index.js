@@ -5,12 +5,14 @@ for(var i=0;i<numberOfButtons;i++){
     document.querySelectorAll("button")[i].addEventListener("click",function (){
         var buttonClicked=this.innerHTML;
         playSound(buttonClicked);
+        buttonAnimation(buttonClicked);
     });
 }
 
 document.addEventListener("keydown",function(event){
     var keyVal=event.key;
     playSound(keyVal);
+    buttonAnimation(keyVal);
 })
 
 function playSound(key){
@@ -46,6 +48,14 @@ function playSound(key){
                 break;
             default: 
         }
+}
+
+function buttonAnimation(currKey){
+    var activeButton = document.querySelector("."+currKey);
+    activeButton.classList.add("pressed");
+    setTimeout(function(){
+        activeButton.classList.remove("pressed");
+    }, 100);
 }
 
 
